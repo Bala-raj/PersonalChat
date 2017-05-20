@@ -1,25 +1,16 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'remote-redux-devtools';
-import reducer from './root-reducer';
+import { createStore, applyMiddleware, compose } from 'redux';
+import createSagaMiddleware, { END } from 'redux-saga';
 
+import rootReducer from './root-reducer';
 
-export default function configureStore(initialState) {
-  const store = createStore(
-    reducer,
-    initialState,
-    composeWithDevTools(
-      applyMiddleware(thunk),
-    )
-  );
+export default function configureStore() {
+  const sagaMiddleware = createSagaMiddleware();
 
-  if (module.hot) {
-    // Enable hot module replacement for reducers
-    module.hot.accept(() => {
-      const nextRootReducer = require('./root-reducer').default;
-      store.replaceReducer(nextRootReducer);
-    });
-  }
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
 
+  const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
+
+  store.runSaga = sagaMiddleware.run;
+  store.close = () => store.dispatch(END);
   return store;
-};
+}
