@@ -11,6 +11,9 @@ import { Provider } from 'react-redux';
 import App from './src/app';
 import configureStore from './src/setup/configureStore';
 
+
+const store = configureStore();
+
 export default class PersonalChat extends Component {
   render() {
     return (

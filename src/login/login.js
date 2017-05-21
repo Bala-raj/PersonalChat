@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { Text } from 'react-native';
+
 @connect(state => ({
   user: state.user,
 }),
@@ -21,9 +23,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Hello world! </h1>
-      </div>
+     <Text> Hello! </Text>
     );
   }
 }
