@@ -1,3 +1,4 @@
+import * as ACTIONS from './login-actions';
 
 const initialState = {
   name: null,
@@ -8,28 +9,16 @@ const initialState = {
 
 const user = (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_USER_NAME':
-      return Object.assign({}, state, {
-        name: action.name,
-      });
-    case 'SET_USER_AVATAR':
-      return Object.assign({}, state, {
-        avatar: action.avatar,
-      });
-    case 'USER_START_AUTHORIZING':
-      return Object.assign({}, state, {
-        authorizing: true,
-      });
-    case 'USER_AUTHORIZED':
-      return Object.assign({}, state, {
-        authorizing: false,
-        authorized: true,
-      });
-    case 'USER_NO_EXIST':
-      return Object.assign({}, state, {
-        authorizing: false,
-        authorized: false,
-      });
+    case ACTIONS.SET_USER_NAME:
+      return { ...state, name: action.name };
+    case ACTIONS.SET_USER_AVATAR:
+      return { ...state, avatar: action.avatar };
+    case ACTIONS.USER_START_AUTHORIZING:
+      return { ...state, authorizing: true };
+    case ACTIONS.USER_AUTHORIZED:
+      return { ...state, authorizing: false, authorized: true };
+    case ACTIONS.USER_NO_EXIST:
+      return { ...state, authorizing: false, authorized: false };
 
     default:
       return state;
