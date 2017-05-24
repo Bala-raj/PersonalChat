@@ -14,7 +14,7 @@ class Input extends Component {
 
   onSubmitEditing = () => {
     this.props.dispatch(
-            this.props.submitAction(this.state.text),
+            this.props.submitAction({name:this.state.text}),
         );
 
     if (!this.props.noclear) {

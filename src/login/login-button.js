@@ -12,7 +12,7 @@ class LoginButton extends Component {
 
   render() {
     return (
-      <Button styleName="light">
+      <Button styleName="light" onPress={this.onLogin}>
         <Text>Start Chatting</Text>
       </Button>
     );

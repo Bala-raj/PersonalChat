@@ -7,11 +7,12 @@ import { Screen, Title, Text, Divider, Button, Spinner } from '@shoutem/ui';
 
 import Input from '../components/Input';
 import LoginButton from './login-button';
+import { setUserName } from './login-actions';
 
 @connect(state => ({
   authorizing: state.user.authorizing,
 }),
-    dispatch => bindActionCreators({ }, dispatch),
+    dispatch => bindActionCreators({ setUserName }, dispatch),
 )
 export default class LoginInterface extends Component {
   static propTypes = {
@@ -33,7 +34,8 @@ export default class LoginInterface extends Component {
 
         <Input
           placeholder="Your name here"
-          submitAction
+          submitAction={this.props.setUserName}
+          submitOnBlur
           noclear
           ref="username"
         />
