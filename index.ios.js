@@ -5,14 +5,16 @@
  */
 
 import React, { Component } from 'react';
-import {  AppRegistry  } from 'react-native';
+import { AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
 
 import App from './src/app';
 import configureStore from './src/setup/configureStore';
+import rootSaga from './src/setup/root-saga';
 
 
 const store = configureStore();
+store.runSaga(rootSaga);
 
 export default class PersonalChat extends Component {
   render() {
