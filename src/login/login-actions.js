@@ -3,11 +3,15 @@ export function action(type, payload = {}) {
   return { type, ...payload };
 }
 export const SET_USER_NAME = 'SET_USER_NAME';
+export const SET_PHONE_NUMBER = 'SET_PHONE_NUMBER';
 export const SET_USER_AVATAR = 'SET_USER_AVATAR';
-export const USER_START_AUTHORIZING = 'USER_START_AUTHORIZING';
+export const SEND_CODE = 'SEND_CODE';
+export const CODE_SENT = 'CODE_SENT';
+export const INVALID_CODE = 'INVALID_CODE';
+export const CONFIRM_CODE = 'CONFIRM_CODE';
 export const USER_AUTHORIZED = 'USER_AUTHORIZED';
-export const USER_NO_EXIST = 'USER_NO_EXIST';
 
 export const setUserName = name => action(SET_USER_NAME, name);
-export const setUserAvatar = data => action(SET_USER_AVATAR, data);
-export const login = data => action(USER_START_AUTHORIZING, data);
+export const setPhoneNumber = data => action(SET_PHONE_NUMBER, data);
+export const sendCode = code => action(SEND_CODE, code);
+export const verifyCode = data => action(CONFIRM_CODE, data);
